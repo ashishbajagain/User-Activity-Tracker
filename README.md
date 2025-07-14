@@ -1,70 +1,78 @@
-User Activity Tracker for WordPress
-Plugin Name: User Activity Tracker
-Description: Tracks anonymous user behavior (session time, browser, OS, visited pages, etc.) and sends it to an external analytics endpoint. Designed to be performance-optimized, security-aware, and user-configurable.
-Version: 1.0.1
-Author: Ashish Bajagain
-License: GPL2
+# User Activity Tracker for WordPress
 
-🚀 Overview
-The User Activity Tracker is a lightweight WordPress plugin designed to collect anonymous user behavior data on your website. This data is then sent to a specified external analytics service for further analysis. The plugin prioritizes performance, security, and user configurability, ensuring minimal impact on site speed while respecting user privacy by not collecting Personally Identifiable Information (PII).
+**Plugin Name:** User Activity Tracker
+**Description:** A lightweight WordPress plugin designed to anonymously track user activity and send the data to an external analytics endpoint. Focuses on performance, security, and user control.
+**Version:** 1.0.1
+**Author:** Ashish Bajagain
+**License:** GPL2
+**License URI:** <https://www.gnu.org/licenses/gpl-2.0.html>
 
-✨ Features
-Anonymous Tracking: Collects non-personal user data.
+---
 
-Performance Optimized: Utilizes WordPress REST API, throttled client-side submissions, bot detection, and asynchronous data sending for a low server footprint.
+## 🌟 What it Does
 
-Security Aware: No PII is collected. Uses cookie-based UUIDs for tracking sessions.
+The User Activity Tracker plugin helps you understand how users interact with your WordPress website without compromising their privacy. It collects anonymous data about user sessions, such as time spent on pages, browser information, operating system, and screen dimensions. This data is then securely sent to an external analytics service for your analysis.
 
-User Configurable: Easy enable/disable tracking option from the WordPress admin panel.
+## ✨ Key Features
 
-Environment Aware: Tracking is primarily active in production environments by default.
+* **Anonymous Data Collection:** Tracks user behavior without collecting Personally Identifiable Information (PII).
 
-📦 Installation
-Download: Download the plugin from its source (e.g., as a .zip file).
+* **Performance-Optimized:** Utilizes WordPress REST API, asynchronous data submission, and bot detection to minimize server load and maintain site speed.
 
-Upload:
+* **Secure & Private:** Employs cookie-based UUIDs for session tracking and includes strict data sanitization. Logged-in users are automatically excluded from tracking.
 
-Go to your WordPress Admin Dashboard.
+* **Configurable:** Easily enable or disable tracking directly from your WordPress admin dashboard.
 
-Navigate to Plugins > Add New.
+* **Environment Aware:** By default, tracking is active only in `production` environments, leveraging WordPress's `WP_ENVIRONMENT_TYPE` constant.
 
-Click on the "Upload Plugin" button at the top of the page.
+## 🚀 Installation
 
-Choose the downloaded .zip file and click "Install Now".
+1.  **Download:** Obtain the plugin's `.zip` file.
 
-Activate: Once installed, click "Activate Plugin".
+2.  **Upload:**
 
-🛠️ Usage
-Configuring the Plugin
-After activation, navigate to User Tracker in your WordPress admin menu.
+    * Log in to your WordPress admin dashboard.
 
-On the settings page, you will find a toggle switch for "Enable Tracking".
+    * Navigate to `Plugins` > `Add New`.
 
-Check the box to activate the frontend tracking script.
+    * Click the "Upload Plugin" button at the top.
 
-Uncheck the box to disable tracking.
+    * Select the downloaded `.zip` file and click "Install Now".
 
-Click "Save Changes" to apply your settings.
+3.  **Activate:** After installation, click "Activate Plugin`.
 
-How it Works
-When enabled, a small JavaScript file (tracker.js) is loaded on the frontend of your website.
+## ⚙️ Configuration & Usage
 
-This script collects anonymous data such as session start/end times, page title, browser, operating system, screen dimensions, language, timezone, and a generated UUID for the user session.
+Once activated, you can manage the plugin's settings:
 
-This data is then sent asynchronously to the plugin's internal WordPress REST API endpoint (/wp-json/tracker/v1/log/).
+1.  Go to your WordPress admin menu and click on `User Tracker`.
 
-The WordPress backend processes this data, performs bot detection, and then forwards the sanitized payload to an external analytics API (https://user-events-api.azurewebsites.net/api/UserEvents).
+2.  On the settings page, you will see an "Enable Tracking" toggle.
 
-Logged-in users are automatically excluded from tracking.
+3.  **Check the box** to activate the frontend tracking script and begin collecting data.
 
-🔒 Privacy and Security
-No PII: This plugin is strictly designed to collect anonymous data. No names, email addresses, IP addresses (they are anonymized before sending to the external service), or other personally identifiable information are stored or transmitted.
+4.  **Uncheck the box** to pause or disable all tracking.
 
-UUIDs: Users are tracked using a randomly generated Universal Unique Identifier (UUID) stored in a cookie, which is purely for session identification and does not link back to personal user data.
+5.  Remember to click "Save Changes" to apply any modifications.
 
-🤝 Contributing
-(Optional section - if you plan to accept contributions)
-If you'd like to contribute to this plugin, please feel free to fork the repository and submit pull requests.
+### How Data is Handled
 
-📄 License
-This plugin is released under the GPL2 License. See the LICENSE file for more details.
+* A small JavaScript file (`js/tracker.js`) is loaded on the frontend, which gathers anonymous user data.
+
+* This data is then sent via an asynchronous `POST` request to the plugin's custom REST API endpoint (`/wp-json/tracker/v1/log/`).
+
+* On the server-side, the plugin validates and sanitizes the incoming data, performs bot detection, and then forwards the cleaned payload to your configured external analytics service (`https://user-events-api.azurewebsites.net/api/UserEvents`).
+
+## 🛡️ Privacy Considerations
+
+This plugin is built with privacy in mind:
+
+* It **does not** collect personal identifying information such as names, email addresses, or precise IP addresses (IPs are anonymized or not used for identification).
+
+* User sessions are identified by a randomly generated, non-personal UUID stored in a cookie.
+
+* Logged-in WordPress users are automatically excluded from tracking to avoid collecting data on administrators or other authenticated users.
+
+## 📄 License
+
+This plugin is open-source and distributed under the **GPL2 License**. For more details, please refer to the full license text.
