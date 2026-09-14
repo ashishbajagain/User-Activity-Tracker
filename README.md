@@ -61,7 +61,7 @@ Once activated, you can manage the plugin's settings:
 
 * This data is then sent via an asynchronous `POST` request to the plugin's custom REST API endpoint (`/wp-json/tracker/v1/log/`).
 
-* On the server-side, the plugin validates and sanitizes the incoming data, performs bot detection, and then forwards the cleaned payload to your configured external analytics service (`https://user-events-api.azurewebsites.net/api/UserEvents`).
+* On the server-side, the plugin validates and sanitizes the incoming data, performs bot detection, and then forwards the cleaned payload to your configured external analytics service.
 
 ## 🛡️ Privacy Considerations
 
